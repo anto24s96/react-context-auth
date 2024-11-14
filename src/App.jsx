@@ -5,6 +5,7 @@ import DefaultLayout from "./pages/DefaultLayout";
 import Posts from "./pages/Posts";
 import SinglePost from "./pages/SinglePost";
 import CreatePost from "./pages/CreatePost";
+import NotFound from "./pages/NotFound";
 
 export default function () {
     return (
@@ -15,6 +16,7 @@ export default function () {
                 <Route path="posts/:slug" element={<SinglePost />} />
                 <Route path="create" element={<CreatePost />} />
             </Route>
+            <Route path="*" element={<NotFound />} />
         </Routes>
     );
 }
