@@ -1,5 +1,6 @@
 import { Swiper, SwiperSlide } from "swiper/react";
 import { Navigation, Pagination, A11y, Autoplay } from "swiper/modules";
+import { useAuth } from "../contexts/AuthContext";
 
 import "swiper/css";
 import "swiper/css/navigation";
@@ -26,10 +27,12 @@ const imageSlides = [
 ];
 
 export default function () {
+    const { isLoggedIn } = useAuth();
+
     return (
         <div>
             <Swiper
-                className="w-full h-[700px]"
+                className="w-full h-[650px]"
                 modules={[Navigation, Pagination, A11y, Autoplay]}
                 spaceBetween={50}
                 slidesPerView={1}
@@ -53,6 +56,11 @@ export default function () {
                     </SwiperSlide>
                 ))}
             </Swiper>
+            {isLoggedIn && (
+                <div className="text-center mt-10">
+                    <h1 className="text-3xl font-bold mb-2">Benvenuto!</h1>
+                </div>
+            )}
         </div>
     );
 }
