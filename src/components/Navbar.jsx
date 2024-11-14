@@ -1,4 +1,5 @@
-import { NavLink } from "react-router-dom";
+import { NavLink, useNavigate } from "react-router-dom";
+import { useAuth } from "../contexts/AuthContext";
 
 const urlPages = [
     {
@@ -12,6 +13,9 @@ const urlPages = [
 ];
 
 export default function () {
+    const { isLoggedIn, logout } = useAuth();
+    const navigate = useNavigate();
+
     return (
         <nav>
             <menu className="flex gap-6">
