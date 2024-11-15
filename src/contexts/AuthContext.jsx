@@ -1,25 +1,21 @@
-import { createContext, useEffect, useState, useContext } from "react";
+import { createContext, useContext } from "react";
+import useStorage from "../components/hooks/useStorage";
+import { useNavigate } from "react-router-dom";
 
 const AuthContext = createContext();
 
 const AuthProvider = ({ children }) => {
-    const [isLoggedIn, setIsLoggedIn] = useState(false);
+    const [isLoggedIn, setIsLoggedIn] = useStorage(false, "isLoggedIn");
+    const navigate = useNavigate();
 
-    useEffect(() => {
-        const storedIsLoggedIn = localStorage.getItem("isLoggedIn");
-        if (storedIsLoggedIn !== null && storedIsLoggedIn === "true") {
-            setIsLoggedIn(true);
-        }
-    }, []);
-
-    const login = () => {
+    const login = (redirectTo) => {
         setIsLoggedIn(true);
-        localStorage.setItem("isLoggedIn", "true");
+        navigate(redirectTo || "/");
     };
 
     const logout = () => {
         setIsLoggedIn(false);
-        localStorage.removeItem("isLoggedIn");
+        navigate("/login");
     };
 
     return (

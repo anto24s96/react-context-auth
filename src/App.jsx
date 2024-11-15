@@ -6,7 +6,6 @@ import Posts from "./pages/Posts";
 import SinglePost from "./pages/SinglePost";
 import CreatePost from "./pages/CreatePost";
 import NotFound from "./pages/NotFound";
-import DashboardLayout from "./components/layouts/DashboardLayout";
 import PrivatePage from "./components/middlewares/PrivatePage";
 import Login from "./pages/Login";
 
@@ -17,20 +16,23 @@ export default function () {
             <Route path="/" element={<DefaultLayout />}>
                 <Route index element={<Home />} />
                 <Route path="login" element={<Login />} />
-                <Route path="posts" element={<Posts />} />
-                <Route path="posts/:slug" element={<SinglePost />} />
+                <Route path="posts">
+                    <Route index element={<Posts />} />
+                    <Route path=":slug" element={<SinglePost />} />
+                </Route>
+                <Route path="*" element={<NotFound />} />
             </Route>
-            <Route path="*" element={<NotFound />} />
+
             {/* Private Routes */}
-            <Route
-                path="/"
-                element={
-                    <PrivatePage>
-                        <DashboardLayout />
-                    </PrivatePage>
-                }
-            >
-                <Route path="create" element={<CreatePost />} />
+            <Route path="/" element={<DefaultLayout />}>
+                <Route
+                    path="create"
+                    element={
+                        <PrivatePage>
+                            <CreatePost />
+                        </PrivatePage>
+                    }
+                />
             </Route>
         </Routes>
     );

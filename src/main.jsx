@@ -6,11 +6,11 @@ import { BrowserRouter } from "react-router-dom";
 import { AuthProvider } from "./contexts/AuthContext.jsx";
 
 createRoot(document.getElementById("root")).render(
-    <GlobalProvider>
-        <AuthProvider>
-            <BrowserRouter>
+    <BrowserRouter>
+        <GlobalProvider>
+            <AuthProvider>
                 <App />
-            </BrowserRouter>
-        </AuthProvider>
-    </GlobalProvider>
+            </AuthProvider>
+        </GlobalProvider>
+    </BrowserRouter>
 );

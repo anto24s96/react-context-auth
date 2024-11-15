@@ -103,7 +103,7 @@ export default function () {
                             htmlFor="title"
                             className="block text-gray-700 font-medium"
                         >
-                            Titolo Blog:{" "}
+                            Titolo Blog:
                         </label>
                         <input
                             type="text"

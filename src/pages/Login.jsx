@@ -1,15 +1,22 @@
 import { useNavigate } from "react-router-dom";
 import { useAuth } from "../contexts/AuthContext";
+import { useEffect } from "react";
 
 export default function () {
-    const { login } = useAuth();
+    const { login, isLoggedIn } = useAuth();
     const navigate = useNavigate();
+
+    useEffect(() => {
+        if (isLoggedIn) {
+            navigate("/");
+        }
+    }, [isLoggedIn, navigate]);
 
     const handleLogin = (e) => {
         e.preventDefault();
         login();
-        navigate("/");
     };
+
     return (
         <div className="flex justify-center items-center h-screen">
             <form
